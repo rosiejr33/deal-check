@@ -163,6 +163,31 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-of
 .ask-ans{padding:12px;font-size:13.5px;line-height:1.5}
 .ask-yes{color:var(--green)} .ask-no{color:var(--red)} .ask-unk{color:var(--ink-2)}
 .ask-hint{padding:9px 12px;font-size:11px;color:var(--ink-2);line-height:1.5;border-top:1px solid var(--rule)}
+
+.arc-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.saved-h{margin-bottom:0}
+.arc-toggle{display:flex;border:1.5px solid var(--ink)}
+.arc-toggle button{padding:6px 12px;background:transparent;border:0;font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.arc-toggle button+button{border-left:1.5px solid var(--ink)}
+.arc-toggle button.on{background:var(--ink);color:var(--carbon)}
+.sv-sub{font-size:10.5px;color:var(--ink-2);display:block;margin-top:1px}
+.sv-n{display:flex;flex-direction:column;overflow:hidden}
+.sv-n>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.cmp-wrap{border:1.5px solid var(--ink);overflow-x:auto;background:rgba(255,255,255,.4)}
+.cmp{border-collapse:collapse;width:100%;font-size:12.5px}
+.cmp th,.cmp td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--rule);white-space:nowrap}
+.cmp th{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-2);border-bottom:1.5px solid var(--ink)}
+.cmp tr:last-child td{border-bottom:0}
+.cmp td.num{font-family:var(--mono);font-weight:600}
+.cmp tr.best td.num{color:var(--green)}
+.cmp .gpill{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;
+  border-radius:50%;font-family:var(--mono);font-weight:700;font-size:11px;color:var(--carbon)}
+.g5.gpill,.g4.gpill{background:var(--green)} .g3.gpill{background:var(--amber)} .g2.gpill,.g1.gpill{background:var(--red)}
+.cmp-empty{padding:20px 14px;text-align:center;font-size:12.5px;color:var(--ink-2)}
+.cmp-x{background:transparent;border:0;color:var(--ink-2);font-size:15px;padding:0 4px}
 </style>
 </head>
 <body>
@@ -208,16 +233,17 @@ var DEF_R = { taxRate:8.125, targetDiscount:6, preApr:6.49, baseMF:0.0022, docCa
 
 var state = {
   mode:"buy",
-  buy:{ dealer:"", sticker:"", theirPrice:"", fees:"", dmv:"", rebates:"",
+  buy:{ vehicle:"", dealer:"", sticker:"", theirPrice:"", fees:"", dmv:"", rebates:"",
         tradeOffer:"", tradePayoff:"", apr:"", term:"60",
         mktTypical:"", mktBest:"" },
-  lease:{ dealer:"", sticker:"", theirPrice:"", mf:"", residual:"", term:"36", down:"0",
+  lease:{ vehicle:"", dealer:"", sticker:"", theirPrice:"", mf:"", residual:"", term:"36", down:"0",
         mktTypical:"", mktBest:"" },
   targets:Object.assign({},DEF_T),
   rules:Object.assign({},DEF_R),
   saved:[],
   open:{ trade:false, fin:false, market:false, targets:false, rules:false, vin:false },
-  vinData:null, vinErr:"", vinLoading:false, vinValue:"", askValue:"", askAns:null
+  vinData:null, vinErr:"", vinLoading:false, vinValue:"", askValue:"", askAns:null,
+  archiveView:"list"
 };
 
 function load(){
@@ -350,7 +376,8 @@ function evalBuy(f,R,T){
   return { grade:g, score:total, parts:parts, badges:badges, checks:checks, lines:lines,
     headline:payment?money2(payment):money(otd), label:payment?"Per month":"Out the door",
     sub:payment?money(otd)+" out the door":"", subLabel:payment?"":"",
-    compare:disc, compareLabel:"off sticker" };
+    compare:disc, compareLabel:"off sticker",
+    monthlyForCompare: payment || null, otd:otd };
 }
 
 /* ---------------- LEASE ---------------- */
@@ -423,7 +450,8 @@ function evalLease(f,R,T){
       ["Payment before tax",money2(base)],["Payment with tax",money2(withTax)],
       ["All-in per month",money2(effective)],["Total over "+term+" mo",money(total)]],
     headline:money2(withTax), label:"Per month", sub:money2(effective)+" all-in",
-    compare:effective, compareLabel:"all-in per month" };
+    compare:effective, compareLabel:"all-in per month",
+    monthlyForCompare: withTax, otd:null };
 }
 
 
@@ -578,6 +606,7 @@ function drawer(id,title,body){
 function renderForm(){
   var b=state.buy,l=state.lease,h="",x="";
   if(state.mode==="buy"){
+    h+=field({label:"Vehicle",hint:"model and trim, for your archive",bind:"buy",key:"vehicle",value:b.vehicle,ph:"e.g. Sienna XLE AWD",text:true});
     h+=field({label:"Dealer",hint:"optional",bind:"buy",key:"dealer",value:b.dealer,ph:"Who quoted this",text:true});
     h+=field({label:"Sticker price",hint:"window sticker, with destination",prefix:"$",bind:"buy",key:"sticker",value:b.sticker});
     h+=field({label:"Their price",hint:"before fees and tax",prefix:"$",bind:"buy",key:"theirPrice",value:b.theirPrice});
@@ -594,6 +623,7 @@ function renderForm(){
        +field({label:"Best you found",hint:"percent off sticker, the outlier",suffix:"%",bind:"buy",key:"mktBest",value:b.mktBest})
        +'<p class="fine">Pull these from Edmunds "Prices Paid" threads for your exact trim, filtered to NY, NJ and CT posts from this month. Fifteen minutes of reading gives the score something real to measure against. Leave blank and the app scores against your target discount instead.</p>');
   } else {
+    h+=field({label:"Vehicle",hint:"model and trim, for your archive",bind:"lease",key:"vehicle",value:l.vehicle,ph:"e.g. Carnival SX",text:true});
     h+=field({label:"Dealer",hint:"optional",bind:"lease",key:"dealer",value:l.dealer,ph:"Who quoted this",text:true});
     h+=field({label:"Sticker price",hint:"window sticker, with destination",prefix:"$",bind:"lease",key:"sticker",value:l.sticker});
     h+=field({label:"Their price",hint:"yes, a lease has one \u2014 ask",prefix:"$",bind:"lease",key:"theirPrice",value:l.theirPrice});
@@ -679,14 +709,43 @@ function renderDrawers(){
 function renderSaved(){
   var el=document.getElementById("saved");
   if(!state.saved.length){ el.innerHTML=""; return; }
-  var h='<div class="saved-h">Saved quotes</div>';
-  state.saved.forEach(function(d){
-    h+='<div class="sv"><button class="sv-main" data-load="'+d.id+'">'
-      +'<span class="sv-g g'+d.grade+'">'+d.grade+'</span>'
-      +'<span class="sv-n">'+esc(d.name)+'</span>'
-      +'<span class="sv-v">'+d.headline+'</span></button>'
-      +'<button class="sv-x" data-del="'+d.id+'" aria-label="Delete">\u00d7</button></div>';
-  });
+
+  var h='<div class="arc-hd"><div class="saved-h">Your archive ('+state.saved.length+')</div>'
+    +'<div class="arc-toggle"><button data-view="list" class="'+(state.archiveView==="list"?"on":"")+'">List</button>'
+    +'<button data-view="compare" class="'+(state.archiveView==="compare"?"on":"")+'">Compare</button></div></div>';
+
+  if(state.archiveView==="list"){
+    state.saved.forEach(function(d){
+      var sub = [d.vehicle&&d.dealer?d.dealer:"", d.mode==="lease"?"Lease":"Purchase"].filter(Boolean).join(" \u00b7 ");
+      h+='<div class="sv"><button class="sv-main" data-load="'+d.id+'">'
+        +'<span class="sv-g g'+d.grade+'">'+d.grade+'</span>'
+        +'<span class="sv-n"><span>'+esc(d.name)+'</span>'+(sub?'<span class="sv-sub">'+esc(sub)+'</span>':'')+'</span>'
+        +'<span class="sv-v">'+d.headline+'</span></button>'
+        +'<button class="sv-x" data-del="'+d.id+'" aria-label="Delete">\u00d7</button></div>';
+    });
+  } else {
+    var rows = state.saved.slice().sort(function(a,b){
+      var av=a.monthly===null||a.monthly===undefined?Infinity:a.monthly;
+      var bv=b.monthly===null||b.monthly===undefined?Infinity:b.monthly;
+      return av-bv;
+    });
+    var bestMonthly = rows.length ? rows[0].monthly : null;
+    h+='<div class="cmp-wrap"><table class="cmp"><thead><tr>'
+      +'<th>Vehicle</th><th>Type</th><th>Monthly</th><th>Score</th><th></th></tr></thead><tbody>';
+    if(!rows.length){
+      h+='<tr><td colspan="5" class="cmp-empty">Nothing saved yet.</td></tr>';
+    }
+    rows.forEach(function(d){
+      var isBest = bestMonthly!==null && d.monthly===bestMonthly;
+      h+='<tr class="'+(isBest?"best":"")+'">'
+        +'<td>'+esc(d.name)+(d.dealer&&d.vehicle?'<span class="sv-sub">'+esc(d.dealer)+'</span>':'')+'</td>'
+        +'<td>'+(d.mode==="lease"?"Lease":"Buy")+'</td>'
+        +'<td class="num">'+(d.monthly?money2(d.monthly)+"/mo":(d.otd?money(d.otd)+" cash":"\u2014"))+'</td>'
+        +'<td><span class="gpill g'+d.grade+'">'+d.grade+'</span></td>'
+        +'<td><button class="cmp-x" data-del="'+d.id+'" aria-label="Remove">\u00d7</button></td></tr>';
+    });
+    h+='</tbody></table></div>';
+  }
   el.innerHTML=h;
 }
 
@@ -700,11 +759,14 @@ function render(){ renderForm(); renderResult(); renderDrawers(); renderSaved();
 
 function saveQuote(res){
   var f=state.mode==="buy"?state.buy:state.lease;
-  var name=f.dealer||((state.mode==="buy"?"Purchase ":"Lease ")+(state.saved.length+1));
-  state.saved.unshift({id:Date.now(),name:name,mode:state.mode,grade:res.grade,
-    headline:res.headline,compare:res.compare,data:JSON.parse(JSON.stringify(f))});
-  state.saved=state.saved.slice(0,15);
-  put("dc:saved",state.saved); renderSaved(); renderResult(); toast("Saved");
+  var vehicle=f.vehicle||"";
+  var name=vehicle||f.dealer||((state.mode==="buy"?"Purchase ":"Lease ")+(state.saved.length+1));
+  state.saved.unshift({id:Date.now(),name:name,vehicle:vehicle,dealer:f.dealer||"",mode:state.mode,
+    grade:res.grade,headline:res.headline,compare:res.compare,
+    monthly:res.monthlyForCompare,otd:res.otd,when:Date.now(),
+    data:JSON.parse(JSON.stringify(f))});
+  state.saved=state.saved.slice(0,20);
+  put("dc:saved",state.saved); renderSaved(); renderResult(); toast("Saved to your archive");
 }
 function toast(m){ var t=document.createElement("div"); t.className="toast"; t.textContent=m;
   document.body.appendChild(t); setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); },1800); }
@@ -727,6 +789,8 @@ document.addEventListener("click",function(e){
   if(t.closest("#tab-lease")){ state.mode="lease"; render(); return; }
   var head=t.closest(".drw-t");
   if(head){ var id=head.parentNode.dataset.drawer; state.open[id]=!state.open[id]; render(); return; }
+  var av=t.closest("[data-view]");
+  if(av){ state.archiveView=av.dataset.view; renderSaved(); return; }
   var lb=t.closest("[data-load]");
   if(lb){ var d=state.saved.filter(function(x){return x.id===Number(lb.dataset.load);})[0];
     if(d){ state.mode=d.mode; state[d.mode]=Object.assign({},state[d.mode],d.data); render(); toast("Loaded"); } return; }
