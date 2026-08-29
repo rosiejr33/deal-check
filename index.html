@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Deal Check</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F7F3E3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Deal Check">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAC7UlEQVR42u3csXEiMRSAYfDQCQkBnVAILVCCW3AhdELghIgSCEgdeMbj8ZgdQNrdp6fvT++SW31+kpYzy9v1spD+680jEByCQ3AIDsEhOASH4FD2VsN/vN7uPKPEnU9Hk0O2FcEhOBT7QPrU+UXxe+qGYXIIDsEhOASH4FCGq2z57UiTVf7eweTQmJOjllPVqtYsNzkEh+AQHIJDcAgOwSE4BIfgkOAQHIJDcAgOwSE4BIfgEBwSHIJDcAgOwSE4BIfgEBwqb3PYw6G7MprwAcdsM2Nz2AcnAoctBo7ADsKOEDiiTIiAPuAItHdEGyFwOIXA0dRiBxkhcAQdA5/vH3CQEVQGHILD2ICDDDjIgENwGBsxxwYcZMBBBhyCw9iAgww4yIBDzhzGRpaxAQcZcJABh+AwNuAgAw4y4JAzh7GRZWzAQQYcZKTHMddvCLbyLU394mjo25JyjI1mcPz5tiQbChx3l2cyHz3LaADHwFclOWp0jWN4ecIuXo6xERrHI2s/no/ON5TQOB5fmzF8kBEXx7z7BRlxcbz2DVoLpcfx8jLX8mFsxMVR8ojLfZARfVuZywcZbRxI550fin6VndiHsdESjil9kNEejml8kNEqDucPOEZspI/uehgbbeAoXInqH/p3IqOZyVHdBxmptpWR5oeSnDlq+TA2ch5Iy5eHjMy3lVkutx3KaPUq2+dSwRHRR7cWG34JNs2a9Tyl2n5DOvbKdb5/Nf/63PkDjhl8YJfkg7fqC0nGItOnshWXk4xsOATH6D/xxkbayVG4tGQk31ZeXmAyujhzWGY4avrgqa/byiPr/f13yOjxKju86mQMt0r/L/xZ+9//0wcIOJwqbCuCQ3AIDsEhOASH4JDgEByCQ3AIDsEhOASH4BAcgkOCQ3AIDsEhOBSuar/UtN7uPE2TQybHw51PR8/R5BAcEhyCQ3AIDgW9ynrTZXJIcAgOwaHKLW/Xi6cgk0NwCA7BITgEh+AQHIJDffYFEeMZ7V1V5ToAAAAASUVORK5CYII=">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAC7UlEQVR42u3csXEiMRSAYfDQCQkBnVAILVCCW3AhdELghIgSCEgdeMbj8ZgdQNrdp6fvT++SW31+kpYzy9v1spD+680jEByCQ3AIDsEhOASH4FD2VsN/vN7uPKPEnU9Hk0O2FcEhOBT7QPrU+UXxe+qGYXIIDsEhOASH4FCGq2z57UiTVf7eweTQmJOjllPVqtYsNzkEh+AQHIJDcAgOwSE4BIfgkOAQHIJDcAgOwSE4BIfgEBwSHIJDcAgOwSE4BIfgEBwqb3PYw6G7MprwAcdsM2Nz2AcnAoctBo7ADsKOEDiiTIiAPuAItHdEGyFwOIXA0dRiBxkhcAQdA5/vH3CQEVQGHILD2ICDDDjIgENwGBsxxwYcZMBBBhyCw9iAgww4yIBDzhzGRpaxAQcZcJABh+AwNuAgAw4y4JAzh7GRZWzAQQYcZKTHMddvCLbyLU394mjo25JyjI1mcPz5tiQbChx3l2cyHz3LaADHwFclOWp0jWN4ecIuXo6xERrHI2s/no/ON5TQOB5fmzF8kBEXx7z7BRlxcbz2DVoLpcfx8jLX8mFsxMVR8ojLfZARfVuZywcZbRxI550fin6VndiHsdESjil9kNEejml8kNEqDucPOEZspI/uehgbbeAoXInqH/p3IqOZyVHdBxmptpWR5oeSnDlq+TA2ch5Iy5eHjMy3lVkutx3KaPUq2+dSwRHRR7cWG34JNs2a9Tyl2n5DOvbKdb5/Nf/63PkDjhl8YJfkg7fqC0nGItOnshWXk4xsOATH6D/xxkbayVG4tGQk31ZeXmAyujhzWGY4avrgqa/byiPr/f13yOjxKju86mQMt0r/L/xZ+9//0wcIOJwqbCuCQ3AIDsEhOASH4JDgEByCQ3AIDsEhOASH4BAcgkOCQ3AIDsEhOBSuar/UtN7uPE2TQybHw51PR8/R5BAcEhyCQ3AIDgW9ynrTZXJIcAgOwaHKLW/Xi6cgk0NwCA7BITgEh+AQHIJDffYFEeMZ7V1V5ToAAAAASUVORK5CYII=">
+<style>
+:root{
+  --carbon:#F7F3E3; --carbon-d:#EFE9D2; --ink:#1A1F2E; --ink-2:#5A6070;
+  --rule:#D9D2B7; --red:#B3282D; --green:#1F6B4A; --amber:#A9691A;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--carbon)}
+body{color:var(--ink); font-family:var(--sans);
+  background-image:linear-gradient(var(--carbon-d) 1px,transparent 1px);
+  background-size:100% 30px; -webkit-text-size-adjust:100%}
+.wrap{max-width:560px;margin:0 auto;
+  padding:calc(20px + env(safe-area-inset-top)) 18px calc(40px + env(safe-area-inset-bottom))}
+button{font-family:inherit;cursor:pointer}
+
+.hd-t{font-family:var(--mono);font-size:25px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.hd-s{font-size:12.5px;color:var(--ink-2);margin:6px 0 18px}
+
+.tabs{display:flex;border:1.5px solid var(--ink);margin-bottom:16px}
+.tabs button{flex:1;padding:11px;background:transparent;border:0;font-family:var(--mono);
+  font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.tabs button+button{border-left:1.5px solid var(--ink)}
+.tabs button.on{background:var(--ink);color:var(--carbon)}
+
+.card{border:1.5px solid var(--ink);background:rgba(255,255,255,.4)}
+.fld{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:9px 12px;border-bottom:1px solid var(--rule);font-size:13.5px}
+.fld:last-child{border-bottom:0}
+.fld-l{display:flex;flex-direction:column;min-width:0}
+.fld-l em{font-style:normal;font-size:10.5px;color:var(--ink-2);margin-top:1px}
+.fld-i{display:flex;align-items:center;gap:2px;font-family:var(--mono);
+  border-bottom:1.5px solid var(--ink);min-width:112px}
+.fld-i i{font-style:normal;font-size:13px;color:var(--ink-2)}
+.fld-i input{width:100%;border:0;background:transparent;text-align:right;
+  font-family:var(--mono);font-size:16px;color:var(--ink);padding:2px 0;min-width:60px}
+.fld-i input:focus{outline:none}
+.fld-i:focus-within{border-bottom-color:var(--red);box-shadow:0 1px 0 var(--red)}
+
+.drw{border:1.5px solid var(--ink);margin-top:-1.5px}
+.drw.gap{margin-top:18px}
+.drw-t{width:100%;display:flex;justify-content:space-between;align-items:center;
+  padding:11px 12px;background:transparent;border:0;font-family:var(--mono);
+  font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-align:left}
+.drw-c{font-size:16px;line-height:1;flex:0 0 auto;padding-left:10px}
+.drw-b{border-top:1px solid var(--rule);background:rgba(255,255,255,.4);display:none}
+.drw.open .drw-b{display:block}
+.fine{font-size:11.5px;color:var(--ink-2);line-height:1.55;padding:11px 12px;margin:0}
+.fine a{color:var(--ink)}
+
+.res{margin-top:22px}
+.grade{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.gstamp{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:92px;height:92px;flex:0 0 92px;border:3px double currentColor;border-radius:4px;
+  transform:rotate(-4deg);animation:thud .34s cubic-bezier(.2,1.4,.5,1)}
+.gnum{font-family:var(--mono);font-size:38px;font-weight:700;line-height:1}
+.gof{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;margin-top:1px}
+.gword{font-family:var(--mono);font-size:19px;font-weight:700;letter-spacing:.02em;line-height:1.15}
+.gsub{font-size:12px;color:var(--ink-2);margin-top:5px;line-height:1.4}
+.g5,.g4{color:var(--green)} .g3{color:var(--amber)} .g2,.g1{color:var(--red)}
+@keyframes thud{0%{transform:rotate(-4deg) scale(1.45);opacity:0}
+  60%{transform:rotate(-4deg) scale(.96);opacity:1}100%{transform:rotate(-4deg) scale(1)}}
+@media (prefers-reduced-motion:reduce){.gstamp{animation:none}}
+
+.badges{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.bdg{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  padding:6px 10px;border:1.5px solid currentColor}
+.b-ok{color:var(--green)} .b-no{color:var(--red)} .b-na{color:var(--ink-2)}
+
+.big{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);
+  padding:12px 0;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:14px}
+.big-n{font-family:var(--mono);font-size:31px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.big-l{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-top:5px}
+.big-r{text-align:right}
+.big-r .big-n{font-size:19px}
+
+.bars{margin-bottom:16px}
+.bar{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--rule)}
+.bar:last-child{border-bottom:0}
+.bar-l{flex:0 0 96px;font-size:12px}
+.bar-t{flex:1;height:9px;background:var(--carbon-d);position:relative}
+.bar-f{position:absolute;left:0;top:0;bottom:0;background:var(--ink)}
+.bar-v{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;color:var(--ink-2);min-width:34px;text-align:right}
+.bar-w{flex:0 0 auto;font-family:var(--mono);font-size:9.5px;color:var(--ink-2);min-width:30px;text-align:right}
+
+.checks{list-style:none;margin:0 0 16px;padding:0}
+.ck{position:relative;padding:7px 0 7px 20px;font-size:13.5px;line-height:1.45;border-bottom:1px solid var(--rule)}
+.ck:last-child{border-bottom:0}
+.ck-m{position:absolute;left:0;top:13px;width:9px;height:9px;border:1.5px solid currentColor}
+.ck-good .ck-m{color:var(--green);background:currentColor;border-radius:50%}
+.ck-warn .ck-m{color:var(--amber);transform:rotate(45deg)}
+.ck-bad .ck-m{color:var(--red);background:currentColor}
+
+.mathbox{border:1.5px solid var(--ink);background:rgba(255,255,255,.4);padding:2px 12px}
+.mrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  padding:6px 0;border-bottom:1px solid var(--rule);font-size:13px}
+.mrow:last-child{border-bottom:0}
+.mrow b{font-family:var(--mono);font-weight:600;font-size:14px}
+
+.save{width:100%;margin-top:14px;padding:13px;background:var(--ink);color:var(--carbon);
+  border:0;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.save:active{background:var(--red)}
+.empty{margin-top:22px;padding:22px 16px;border:1.5px dashed var(--ink);text-align:center;
+  font-size:13px;color:var(--ink-2);line-height:1.5}
+
+.saved{margin-top:20px}
+.saved-h{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-2);margin-bottom:8px}
+.sv{display:flex;border:1.5px solid var(--ink);margin-bottom:-1.5px;background:rgba(255,255,255,.4)}
+.sv-main{flex:1;display:flex;align-items:center;gap:10px;padding:11px 12px;
+  background:transparent;border:0;text-align:left;min-width:0}
+.sv-g{font-family:var(--mono);font-size:15px;font-weight:700;flex:0 0 auto;width:16px}
+.sv-n{flex:1;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sv-v{font-family:var(--mono);font-size:13px;font-weight:600}
+.sv-x{padding:0 15px;background:transparent;border:0;border-left:1.5px solid var(--ink);
+  font-size:19px;line-height:1;color:var(--ink-2)}
+.foot{margin-top:24px;font-size:11px;color:var(--ink-2);line-height:1.55}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);
+  color:var(--carbon);padding:9px 18px;font-family:var(--mono);font-size:12px;
+  letter-spacing:.08em;text-transform:uppercase;z-index:50}
+button:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+@media (max-width:420px){
+  .fld{flex-direction:column;align-items:stretch;gap:5px}
+  .fld-i{min-width:0}.fld-i input{text-align:left}
+  .big{flex-direction:column;align-items:flex-start;gap:10px}
+  .big-r{text-align:left}
+  .bar-l{flex:0 0 84px;font-size:11.5px}
+}
+
+.vin-wrap{padding:0}
+.vin-row{display:flex;gap:0;border-bottom:1px solid var(--rule)}
+.vin-row input{flex:1;border:0;background:transparent;padding:11px 12px;font-family:var(--mono);
+  font-size:15px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink)}
+.vin-row input:focus{outline:none}
+.vin-row input::placeholder{text-transform:none;letter-spacing:normal;color:var(--ink-2);font-family:var(--sans);font-size:13px}
+.vin-go{flex:0 0 auto;padding:11px 16px;background:var(--ink);color:var(--carbon);border:0;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.vin-go:disabled{opacity:.5}
+.vin-status{padding:9px 12px;font-size:12px;color:var(--ink-2);border-bottom:1px solid var(--rule)}
+.vin-status.err{color:var(--red)}
+.vin-specs{padding:2px 12px;border-bottom:1px solid var(--rule)}
+.vin-spec{display:flex;justify-content:space-between;gap:10px;padding:6px 0;
+  border-bottom:1px solid var(--rule);font-size:12.5px}
+.vin-spec:last-child{border-bottom:0}
+.vin-spec b{font-family:var(--mono);font-weight:600;text-align:right}
+.ask-row{display:flex;gap:0;border-bottom:1px solid var(--rule)}
+.ask-row input{flex:1;border:0;background:transparent;padding:11px 12px;font-size:13.5px;color:var(--ink)}
+.ask-row input:focus{outline:none}
+.ask-go{flex:0 0 auto;padding:11px 16px;background:var(--ink);color:var(--carbon);border:0;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.ask-ans{padding:12px;font-size:13.5px;line-height:1.5}
+.ask-yes{color:var(--green)} .ask-no{color:var(--red)} .ask-unk{color:var(--ink-2)}
+.ask-hint{padding:9px 12px;font-size:11px;color:var(--ink-2);line-height:1.5;border-top:1px solid var(--rule)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hd-t">Deal Check</div>
+  <div class="hd-s">Enter what the dealer told you. Nothing leaves this phone.</div>
+
+  <div class="tabs">
+    <button id="tab-buy" class="on">Buying</button>
+    <button id="tab-lease">Leasing</button>
+  </div>
+
+  <div class="drw" data-drawer="vin">
+    <button class="drw-t"><span>Check a VIN &mdash; does it have X?</span><span class="drw-c">+</span></button>
+    <div class="drw-b vin-wrap" id="d-vin"></div>
+  </div>
+
+  <div class="card" id="form"></div>
+  <div id="extra"></div>
+  <div id="result"></div>
+
+  <div class="drw gap" data-drawer="targets">
+    <button class="drw-t"><span>Your number and your ceiling</span><span class="drw-c">+</span></button>
+    <div class="drw-b" id="d-targets"></div>
+  </div>
+  <div class="drw" data-drawer="rules">
+    <button class="drw-t"><span>Rates and rules</span><span class="drw-c">+</span></button>
+    <div class="drw-b" id="d-rules"></div>
+  </div>
+
+  <div class="saved" id="saved"></div>
+
+  <p class="foot">Tax handling is approximate and New York specific. The 1&ndash;5 score is only as
+  good as the benchmarks you enter &mdash; it compares your quote to numbers you researched, not to
+  a live market feed. Confirm anything material with the dealer's finance office before you sign.</p>
+</div>
+
+<script>
+"use strict";
+
+var DEF_T = { want:"502", ceiling:"560", maxOTD:"" };
+var DEF_R = { taxRate:8.125, targetDiscount:6, preApr:6.49, baseMF:0.0022, docCap:175 };
+
+var state = {
+  mode:"buy",
+  buy:{ dealer:"", sticker:"", theirPrice:"", fees:"", dmv:"", rebates:"",
+        tradeOffer:"", tradePayoff:"", apr:"", term:"60",
+        mktTypical:"", mktBest:"" },
+  lease:{ dealer:"", sticker:"", theirPrice:"", mf:"", residual:"", term:"36", down:"0",
+        mktTypical:"", mktBest:"" },
+  targets:Object.assign({},DEF_T),
+  rules:Object.assign({},DEF_R),
+  saved:[],
+  open:{ trade:false, fin:false, market:false, targets:false, rules:false, vin:false },
+  vinData:null, vinErr:"", vinLoading:false, vinValue:"", askValue:"", askAns:null
+};
+
+function load(){
+  try{
+    var a=localStorage.getItem("dc:targets"); if(a) state.targets=Object.assign({},DEF_T,JSON.parse(a));
+    var b=localStorage.getItem("dc:rules");   if(b) state.rules=Object.assign({},DEF_R,JSON.parse(b));
+    var c=localStorage.getItem("dc:saved");   if(c) state.saved=JSON.parse(c);
+  }catch(e){}
+}
+function put(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+
+function num(v){ var n=parseFloat(String(v).replace(/[^0-9.\-]/g,"")); return isNaN(n)?0:n; }
+function has(v){ return String(v).trim()!=="" && num(v)!==0; }
+function money(n){ return n.toLocaleString("en-US",{style:"currency",currency:"USD",minimumFractionDigits:0,maximumFractionDigits:0}); }
+function money2(n){ return n.toLocaleString("en-US",{style:"currency",currency:"USD",minimumFractionDigits:2,maximumFractionDigits:2}); }
+function pctS(n,d){ return n.toFixed(d===undefined?1:d)+"%"; }
+function clamp(n,a,b){ return Math.max(a,Math.min(b,n)); }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+/* score a value against a benchmark band. 60 = typical, 100 = best seen. */
+function bandScore(v, typical, best, higherBetter){
+  if(!isFinite(v)) return null;
+  var span = higherBetter ? (best - typical) : (typical - best);
+  if(!(span > 0)) return null;
+  var d = higherBetter ? (v - typical) : (typical - v);
+  return clamp(60 + (d/span)*40, 0, 100);
+}
+function grade(score){
+  return score>=85?5 : score>=70?4 : score>=55?3 : score>=40?2 : 1;
+}
+var GWORD={5:"Excellent",4:"Good",3:"Fair",2:"Weak",1:"Poor"};
+
+function blend(parts){
+  var tw=0, ts=0;
+  parts.forEach(function(p){ if(p.score!==null){ tw+=p.weight; ts+=p.score*p.weight; } });
+  return tw>0 ? ts/tw : null;
+}
+
+/* ---------------- BUY ---------------- */
+function evalBuy(f,R,T){
+  var sticker=num(f.sticker), price=num(f.theirPrice), fees=num(f.fees),
+      dmv=num(f.dmv), rebates=num(f.rebates), offer=num(f.tradeOffer),
+      payoff=num(f.tradePayoff), apr=num(f.apr)/100, term=num(f.term);
+  if(!sticker || !price) return null;
+
+  var taxable=Math.max(0, price+fees-rebates-offer);
+  var tax=taxable*(R.taxRate/100);
+  var otd=price+fees-rebates+dmv+tax;
+  var equity = offer ? offer-payoff : 0;
+  var owed=Math.max(0, otd-equity);
+  var disc=((sticker-price)/sticker)*100;
+
+  var payment=null;
+  if(term>0 && owed>0){ var r=apr/12; payment = r===0 ? owed/term : (owed*r)/(1-Math.pow(1+r,-term)); }
+
+  /* --- price score --- */
+  var mt=num(f.mktTypical), mb=num(f.mktBest), priceScore=null, priceBasis="";
+  if(has(f.mktTypical) && has(f.mktBest)){
+    priceScore=bandScore(disc, mt, mb, true);
+    priceBasis="vs the "+pctS(mt)+"\u2013"+pctS(mb)+" others are getting";
+  }
+  if(priceScore===null){
+    priceScore=clamp(60+((disc-R.targetDiscount)/Math.max(R.targetDiscount*0.5,1))*40,0,100);
+    priceBasis="vs your "+pctS(R.targetDiscount,0)+" target (no market band entered)";
+  }
+
+  /* --- fees score --- */
+  var excess=Math.max(0, fees-R.docCap);
+  var feeScore=clamp(100-(excess/400)*50, 0, 100);
+
+  /* --- rate score --- */
+  var rateScore=null;
+  if(has(f.apr)) rateScore=clamp(100-Math.max(0,(num(f.apr)-R.preApr))*25, 0, 100);
+
+  /* --- budget score --- */
+  var budScore=null, want=num(T.want), ceil=num(T.ceiling);
+  if(payment && has(T.ceiling)) budScore=clamp(100-Math.max(0,(payment-ceil)/ceil)*400, 0, 100);
+
+  var parts=[
+    {key:"Price",  weight:40, score:priceScore, note:priceBasis},
+    {key:"Fees",   weight:20, score:feeScore,   note:excess>0?money(excess)+" over the cap":"clean"},
+    {key:"Rate",   weight:25, score:rateScore,  note:has(f.apr)?"vs your "+pctS(R.preApr,2)+" pre-approval":"no rate entered"},
+    {key:"Budget", weight:15, score:budScore,   note:has(T.ceiling)?"vs your ceiling":"no ceiling set"}
+  ];
+  var total=blend(parts);
+  if(priceScore!==null) total=Math.min(total, priceScore+22); /* a good rate can't rescue a bad price */
+  var g=grade(total);
+
+  var badges=[];
+  if(payment && has(T.want))
+    badges.push(payment<=want ? {k:"ok",t:"Hits your number"}
+      : {k:"no",t:money(payment-want)+"/mo over your number"});
+  if(payment && has(T.ceiling))
+    badges.push(payment<=ceil ? {k:"ok",t:"In budget"}
+      : {k:"no",t:money(payment-ceil)+"/mo over your ceiling"});
+  if(has(T.maxOTD))
+    badges.push(otd<=num(T.maxOTD) ? {k:"ok",t:"Under your out-the-door cap"}
+      : {k:"no",t:money(otd-num(T.maxOTD))+" over your cap"});
+  if(!badges.length) badges.push({k:"na",t:"Set your number to see budget checks"});
+
+  var checks=[];
+  var gap=sticker*(R.targetDiscount/100)-(sticker-price);
+  if(has(f.mktTypical)&&has(f.mktBest)){
+    if(disc>=mb) checks.push({k:"good",t:pctS(disc)+" off beats the best deal you found in the region."});
+    else if(disc>=mt) checks.push({k:"good",t:pctS(disc)+" off is above the tri-state typical of "+pctS(mt)+"."});
+    else checks.push({k:"bad",t:pctS(disc)+" off is below the "+pctS(mt)+" typical. Ask for "+money(sticker*(mt/100)-(sticker-price))+" more to match the region."});
+  } else {
+    if(disc>=R.targetDiscount) checks.push({k:"good",t:pctS(disc)+" off sticker \u2014 at or past your target."});
+    else checks.push({k:disc>=R.targetDiscount*0.6?"warn":"bad",t:"Only "+pctS(disc)+" off sticker. Ask for "+money(gap)+" more."});
+  }
+  if(fees<=R.docCap) checks.push({k:"good",t:money(fees)+" in fees is within the NY doc fee cap."});
+  else checks.push({k:"bad",t:money(fees)+" in fees is "+money(excess)+" over the NY cap. Itemize it or strike it."});
+  if(has(f.apr)){
+    if(num(f.apr)<=R.preApr) checks.push({k:"good",t:"Their "+pctS(num(f.apr),2)+" beats your pre-approval."});
+    else checks.push({k:"warn",t:"Their "+pctS(num(f.apr),2)+" is above your "+pctS(R.preApr,2)+" pre-approval. Use your own financing."});
+  }
+  if(equity>0) checks.push({k:"good",t:money(equity)+" of trade equity is doing real work here."});
+  else if(equity<0) checks.push({k:"warn",t:"You're underwater by "+money(-equity)+" \u2014 that's rolling into the new loan."});
+  if(term>60) checks.push({k:"warn",t:term+" months is a long time to owe on a family car."});
+
+  var lines=[
+    ["Sticker price",money(sticker)],["Their price",money(price)],["Off sticker",pctS(disc)],
+    ["Fees",money(fees)],["DMV and registration",money(dmv)],["Sales tax",money(tax)],
+    ["Out the door",money(otd)]
+  ];
+  if(equity) lines.push(["Trade equity",money(equity)]);
+  lines.push(["Cash or loan needed",money(owed)]);
+  if(payment) lines.push(["Payment over "+term+" mo",money2(payment)]);
+
+  return { grade:g, score:total, parts:parts, badges:badges, checks:checks, lines:lines,
+    headline:payment?money2(payment):money(otd), label:payment?"Per month":"Out the door",
+    sub:payment?money(otd)+" out the door":"", subLabel:payment?"":"",
+    compare:disc, compareLabel:"off sticker" };
+}
+
+/* ---------------- LEASE ---------------- */
+function evalLease(f,R,T){
+  var sticker=num(f.sticker), price=num(f.theirPrice), mf=num(f.mf),
+      resPct=num(f.residual), term=num(f.term), down=num(f.down);
+  if(!sticker||!price||!term||!resPct) return null;
+
+  var residual=sticker*(resPct/100);
+  var cap=price-down;
+  var dep=(cap-residual)/term;
+  var rent=(cap+residual)*mf;
+  var base=dep+rent;
+  var tax=(base*term+down)*(R.taxRate/100);
+  var withTax=base+tax/term;
+  var total=down+base*term+tax;
+  var effective=total/term;
+  var disc=((sticker-price)/sticker)*100;
+  var pom=(base/sticker)*100;
+  var markupAPR=Math.max(0,(mf-R.baseMF))*2400;
+
+  var mt=num(f.mktTypical), mb=num(f.mktBest), priceScore=null, priceBasis="";
+  if(has(f.mktTypical)&&has(f.mktBest)){
+    priceScore=bandScore(effective, mt, mb, false);
+    priceBasis="vs the "+money(mt)+"\u2013"+money(mb)+"/mo others are getting";
+  }
+  if(priceScore===null){
+    priceScore=clamp(60+((1-pom)/0.35)*40,0,100);
+    priceBasis="vs the 1%-of-sticker rule (no market band entered)";
+  }
+
+  var structScore=down>0 ? clamp(100-(down/1000)*20,0,100) : 100;
+  var rateScore=clamp(100-markupAPR*25,0,100);
+  var budScore=null, want=num(T.want), ceil=num(T.ceiling);
+  if(has(T.ceiling)) budScore=clamp(100-Math.max(0,(withTax-ceil)/ceil)*400,0,100);
+
+  var parts=[
+    {key:"Price",  weight:40, score:priceScore, note:priceBasis},
+    {key:"Rate",   weight:25, score:rateScore,  note:markupAPR>0?pctS(markupAPR,2)+" markup":"at the buy rate"},
+    {key:"Structure",weight:20,score:structScore,note:down>0?money(down)+" down":"zero down"},
+    {key:"Budget", weight:15, score:budScore,   note:has(T.ceiling)?"vs your ceiling":"no ceiling set"}
+  ];
+  var totalScore=blend(parts);
+  if(priceScore!==null) totalScore=Math.min(totalScore, priceScore+22);
+  var g=grade(totalScore);
+
+  var badges=[];
+  if(has(T.want)) badges.push(withTax<=want?{k:"ok",t:"Hits your number"}:{k:"no",t:money(withTax-want)+"/mo over your number"});
+  if(has(T.ceiling)) badges.push(withTax<=ceil?{k:"ok",t:"In budget"}:{k:"no",t:money(withTax-ceil)+"/mo over your ceiling"});
+  if(!badges.length) badges.push({k:"na",t:"Set your number to see budget checks"});
+
+  var checks=[];
+  if(has(f.mktTypical)&&has(f.mktBest)){
+    if(effective<=mb) checks.push({k:"good",t:money2(effective)+"/mo all-in beats the best you found in the region."});
+    else if(effective<=mt) checks.push({k:"good",t:money2(effective)+"/mo all-in is under the tri-state typical of "+money(mt)+"."});
+    else checks.push({k:"bad",t:money2(effective)+"/mo all-in is above the "+money(mt)+" typical. That's "+money((effective-mt)*term)+" more over the term."});
+  }
+  if(markupAPR<=0.001) checks.push({k:"good",t:"Money factor is at the buy rate. Nothing hidden in the rate."});
+  else checks.push({k:"bad",t:"Money factor is marked up "+pctS(markupAPR,2)+" APR \u2014 "+money((mf-R.baseMF)*(cap+residual)*term)+" of profit buried in the payment."});
+  if(disc>=R.targetDiscount) checks.push({k:"good",t:pctS(disc)+" off sticker \u2014 you actually negotiated the price."});
+  else checks.push({k:disc>=R.targetDiscount*0.6?"warn":"bad",t:pctS(disc)+" off sticker. A lease has a selling price too \u2014 push it like you're buying."});
+  if(pom<=1) checks.push({k:"good",t:"Payment is "+pctS(pom,2)+" of sticker. That's a solid lease."});
+  else checks.push({k:"warn",t:"Payment is "+pctS(pom,2)+" of sticker. Under 1% is the mark to beat."});
+  if(down>0) checks.push({k:"warn",t:money(down)+" down is unsecured. Total the car in month three and the insurer pays the bank, not you."});
+  else checks.push({k:"good",t:"Nothing down means nothing at risk."});
+
+  return { grade:g, score:totalScore, parts:parts, badges:badges, checks:checks,
+    lines:[["Sticker price",money(sticker)],["Their price",money(price)],["Off sticker",pctS(disc)],
+      ["Residual",money(residual)],["Depreciation",money2(dep)],["Rent charge",money2(rent)],
+      ["Payment before tax",money2(base)],["Payment with tax",money2(withTax)],
+      ["All-in per month",money2(effective)],["Total over "+term+" mo",money(total)]],
+    headline:money2(withTax), label:"Per month", sub:money2(effective)+" all-in",
+    compare:effective, compareLabel:"all-in per month" };
+}
+
+
+/* ---------------- VIN lookup (NHTSA vPIC, free, no key) ---------------- */
+
+var VIN_FIELDS = [
+  ["Model year", "ModelYear"], ["Make", "Make"], ["Model", "Model"], ["Trim", "Trim"],
+  ["Body style", "BodyClass"], ["Drivetrain", "DriveType"],
+  ["Engine", "EngineCylinders,DisplacementL,EngineHP"],
+  ["Transmission", "TransmissionStyle"], ["Fuel", "FuelTypePrimary"],
+  ["Doors", "Doors"], ["Seats", "Seats,SeatRows"],
+  ["Assembly plant", "PlantCity,PlantState,PlantCountry"]
+];
+
+/* keyword -> vPIC field(s) that answer it, plus how to read "yes" */
+var FEATURE_MAP = [
+  { kw:["awd","all wheel drive","all-wheel drive","4wd","four wheel drive"], field:"DriveType", type:"contains", yes:["4wd","awd","all-wheel","4-wheel"] },
+  { kw:["fwd","front wheel drive"], field:"DriveType", type:"contains", yes:["fwd","front-wheel"] },
+  { kw:["blind spot"], field:"BlindSpotMon", type:"flag" },
+  { kw:["lane keep","lane assist"], field:"LaneKeepSystem", type:"flag" },
+  { kw:["lane departure"], field:"LaneDepartureWarning", type:"flag" },
+  { kw:["forward collision"], field:"ForwardCollisionWarning", type:"flag" },
+  { kw:["automatic emergency braking","auto emergency braking","aeb"], field:"DynamicBrakeSupport", type:"flag" },
+  { kw:["pedestrian"], field:"PedestrianAutomaticEmergencyBraking", type:"flag" },
+  { kw:["adaptive cruise"], field:"AdaptiveCruiseControl", type:"flag" },
+  { kw:["backup camera","rear camera","rearview camera"], field:"RearVisibilitySystem", type:"flag" },
+  { kw:["park assist","parking sensors","parking assist"], field:"ParkAssist", type:"flag" },
+  { kw:["traction control"], field:"TractionControl", type:"flag" },
+  { kw:["stability control","esc"], field:"ESC", type:"flag" },
+  { kw:["abs","anti-lock"], field:"ABS", type:"flag" },
+  { kw:["tire pressure","tpms"], field:"TPMS", type:"flag" },
+  { kw:["curtain airbag"], field:"Airbag_Loc_Curtain", type:"present" },
+  { kw:["side airbag"], field:"Airbag_Loc_Side", type:"present" },
+  { kw:["knee airbag"], field:"Airbag_Loc_Knee", type:"present" },
+  { kw:["cylinders","engine size","how many cylinders"], field:"EngineCylinders", type:"value" },
+  { kw:["horsepower","hp"], field:"EngineHP", type:"value", suffix:" hp" },
+  { kw:["transmission","automatic","manual"], field:"TransmissionStyle", type:"value" },
+  { kw:["seats","seating","how many seats"], field:"Seats", type:"value" },
+  { kw:["doors"], field:"Doors", type:"value" },
+  { kw:["turbo"], field:"OtherEngineInfo,Turbo", type:"contains", yes:["turbo"] },
+  { kw:["made in","assembled","plant","built"], field:"PlantCountry", type:"value" }
+];
+var NOT_COVERED = ["leather","heated seat","sunroof","moonroof","navigation","third row",
+  "third-row","captain","tow package","towing","apple carplay","android auto","panoramic"];
+
+function vinField(r, key){
+  var parts = key.split(",");
+  var vals = parts.map(function(k){ return (r[k]||"").toString().trim(); }).filter(Boolean);
+  return vals.join(", ");
+}
+
+function fetchVin(vin){
+  vin = vin.toUpperCase().replace(/[^A-Z0-9]/g,"");
+  if(vin.length !== 17){
+    state.vinErr = "VINs are 17 characters. Yours is "+vin.length+".";
+    state.vinData = null; renderVin(); return;
+  }
+  state.vinLoading = true; state.vinErr=""; state.vinData=null; renderVin();
+  var url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues/"+vin+"?format=json";
+  fetch(url).then(function(resp){
+    if(!resp.ok) throw new Error("NHTSA lookup failed ("+resp.status+")");
+    return resp.json();
+  }).then(function(data){
+    state.vinLoading = false;
+    var r = data && data.Results && data.Results[0];
+    if(!r || !r.Make){ state.vinErr = "No data came back for that VIN. Double check the characters."; renderVin(); return; }
+    state.vinData = r;
+    state.askAns = null;
+    renderVin();
+  }).catch(function(e){
+    state.vinLoading = false;
+    state.vinErr = "Couldn't reach NHTSA's lookup. Check your connection and try again.";
+    renderVin();
+  });
+}
+
+function answerFeature(q){
+  var r = state.vinData; if(!r) return null;
+  var ql = q.toLowerCase();
+  for(var i=0;i<NOT_COVERED.length;i++){
+    if(ql.indexOf(NOT_COVERED[i])!==-1){
+      return {k:"unk", t:"VIN data doesn't cover trim comfort features like that. Check the window sticker or the build sheet for this one."};
+    }
+  }
+  for(var j=0;j<FEATURE_MAP.length;j++){
+    var m = FEATURE_MAP[j];
+    var hit = m.kw.some(function(k){ return ql.indexOf(k)!==-1; });
+    if(!hit) continue;
+    var val = vinField(r, m.field);
+    if(m.type==="flag"){
+      var vlow=(val||"").toLowerCase();
+      if(vlow==="standard") return {k:"yes", t:"Yes \u2014 standard equipment on this VIN."};
+      if(vlow==="optional") return {k:"unk", t:"Available as an option \u2014 not guaranteed standard on this specific VIN."};
+      if(vlow==="not available"||vlow==="no") return {k:"no", t:"No, not on this VIN."};
+      return {k:"unk", t:"NHTSA doesn't have that flag reported for this VIN."};
+    }
+    if(m.type==="present") return val ? {k:"yes",t:"Yes \u2014 "+val+"."} : {k:"unk",t:"Not reported for this VIN."};
+    if(m.type==="contains"){
+      var vl=(val||"").toLowerCase();
+      var found = m.yes.some(function(y){ return vl.indexOf(y)!==-1; });
+      return {k:found?"yes":"no", t:(found?"Yes \u2014 ":"No \u2014 ")+"drivetrain is listed as "+(val||"unknown")+"."};
+    }
+    if(m.type==="value") return val ? {k:"unk", t:(val)+(m.suffix||"")} : {k:"unk", t:"Not reported for this VIN."};
+  }
+  return {k:"unk", t:"Try asking about drivetrain, engine, transmission, seats, or a specific safety feature (blind spot monitor, lane keep, forward collision, adaptive cruise, backup camera)."};
+}
+
+function renderVin(){
+  var el = document.getElementById("d-vin");
+  var h = '<div class="vin-row">'
+    + '<input type="text" id="vin-input" maxlength="17" placeholder="17-character VIN" value="'+esc(state.vinValue)+'">'
+    + '<button class="vin-go" id="vin-go">Look up</button></div>';
+
+  if(state.vinLoading) h += '<div class="vin-status">Checking NHTSA\u2019s database\u2026</div>';
+  if(state.vinErr) h += '<div class="vin-status err">'+esc(state.vinErr)+'</div>';
+
+  if(state.vinData){
+    var r = state.vinData;
+    h += '<div class="vin-specs">';
+    VIN_FIELDS.forEach(function(f){
+      var v = vinField(r, f[1]);
+      h += '<div class="vin-spec"><span>'+f[0]+'</span><b>'+esc(v||"\u2014")+'</b></div>';
+    });
+    h += '</div>';
+
+    h += '<div class="ask-row"><input type="text" id="ask-input" placeholder="does it have blind spot monitoring?" value="'+esc(state.askValue)+'">'
+       + '<button class="ask-go" id="ask-go">Ask</button></div>';
+    if(state.askAns){
+      h += '<div class="ask-ans ask-'+state.askAns.k+'">'+esc(state.askAns.t)+'</div>';
+    }
+    h += '<div class="ask-hint">Pulled live from NHTSA\u2019s public vehicle database. Strong on drivetrain, engine, and safety tech (blind spot, lane keep, forward collision, adaptive cruise, ABS). Doesn\u2019t know about leather, heated seats, sunroof, or infotainment trim \u2014 that\u2019s not in any free public VIN database, so check the window sticker for those.</div>';
+  }
+  el.innerHTML = h;
+}
+
+/* ---------------- view ---------------- */
+function field(o){
+  return '<label class="fld"><span class="fld-l">'+esc(o.label)
+    +(o.hint?'<em>'+esc(o.hint)+'</em>':'')+'</span><span class="fld-i">'
+    +(o.prefix?'<i>'+o.prefix+'</i>':'')
+    +'<input type="text" inputmode="'+(o.text?"text":"decimal")+'" data-bind="'+o.bind
+    +'" data-key="'+o.key+'" value="'+esc(o.value)+'" placeholder="'+esc(o.ph||"0")+'">'
+    +(o.suffix?'<i>'+o.suffix+'</i>':'')+'</span></label>';
+}
+function drawer(id,title,body){
+  var open=state.open[id];
+  return '<div class="drw'+(open?' open':'')+'" data-drawer="'+id+'">'
+    +'<button class="drw-t"><span>'+title+'</span><span class="drw-c">'+(open?'\u2013':'+')+'</span></button>'
+    +'<div class="drw-b">'+body+'</div></div>';
+}
+
+function renderForm(){
+  var b=state.buy,l=state.lease,h="",x="";
+  if(state.mode==="buy"){
+    h+=field({label:"Dealer",hint:"optional",bind:"buy",key:"dealer",value:b.dealer,ph:"Who quoted this",text:true});
+    h+=field({label:"Sticker price",hint:"window sticker, with destination",prefix:"$",bind:"buy",key:"sticker",value:b.sticker});
+    h+=field({label:"Their price",hint:"before fees and tax",prefix:"$",bind:"buy",key:"theirPrice",value:b.theirPrice});
+    h+=field({label:"Fees they added",hint:"doc fee and add-ons, not DMV",prefix:"$",bind:"buy",key:"fees",value:b.fees});
+    h+=field({label:"DMV and registration",hint:"plates, title, inspection",prefix:"$",bind:"buy",key:"dmv",value:b.dmv});
+    h+=field({label:"Rebates",hint:"factory cash you qualify for",prefix:"$",bind:"buy",key:"rebates",value:b.rebates});
+    h+=field({label:"Rate",hint:"APR they quoted",suffix:"%",bind:"buy",key:"apr",value:b.apr});
+    h+=field({label:"Months",bind:"buy",key:"term",value:b.term,ph:"60"});
+    x =drawer("trade","Trading in the Traverse",
+        field({label:"Their offer for it",prefix:"$",bind:"buy",key:"tradeOffer",value:b.tradeOffer})
+       +field({label:"What you still owe",hint:"GM Financial payoff",prefix:"$",bind:"buy",key:"tradePayoff",value:b.tradePayoff}));
+    x+=drawer("market","What the tri-state is paying",
+        field({label:"Typical discount",hint:"percent off sticker, mid-pack",suffix:"%",bind:"buy",key:"mktTypical",value:b.mktTypical})
+       +field({label:"Best you found",hint:"percent off sticker, the outlier",suffix:"%",bind:"buy",key:"mktBest",value:b.mktBest})
+       +'<p class="fine">Pull these from Edmunds "Prices Paid" threads for your exact trim, filtered to NY, NJ and CT posts from this month. Fifteen minutes of reading gives the score something real to measure against. Leave blank and the app scores against your target discount instead.</p>');
+  } else {
+    h+=field({label:"Dealer",hint:"optional",bind:"lease",key:"dealer",value:l.dealer,ph:"Who quoted this",text:true});
+    h+=field({label:"Sticker price",hint:"window sticker, with destination",prefix:"$",bind:"lease",key:"sticker",value:l.sticker});
+    h+=field({label:"Their price",hint:"yes, a lease has one \u2014 ask",prefix:"$",bind:"lease",key:"theirPrice",value:l.theirPrice});
+    h+=field({label:"Money factor",hint:"ask: what is the money factor?",bind:"lease",key:"mf",value:l.mf,ph:"0.00220"});
+    h+=field({label:"Residual",hint:"percent of sticker, set by the bank",suffix:"%",bind:"lease",key:"residual",value:l.residual,ph:"58"});
+    h+=field({label:"Months",bind:"lease",key:"term",value:l.term});
+    h+=field({label:"Money down",prefix:"$",bind:"lease",key:"down",value:l.down});
+    x =drawer("market","What the tri-state is paying",
+        field({label:"Typical all-in",hint:"per month, mid-pack",prefix:"$",bind:"lease",key:"mktTypical",value:l.mktTypical})
+       +field({label:"Best you found",hint:"per month, the outlier",prefix:"$",bind:"lease",key:"mktBest",value:l.mktBest})
+       +'<p class="fine">Leasehackr\'s SIGNED! database lists real signed contracts with region and monthly cost \u2014 filter to NY, NJ and CT on your trim, this month. Enter the all-in monthly (payment plus everything due at signing, divided by the term), not the advertised payment. Leave blank and the app scores against the 1%-of-sticker rule instead.</p>');
+  }
+  document.getElementById("form").innerHTML=h;
+  document.getElementById("extra").innerHTML=x;
+}
+
+function renderResult(){
+  var f = state.mode==="buy" ? state.buy : state.lease;
+  var res = state.mode==="buy" ? evalBuy(f,state.rules,state.targets) : evalLease(f,state.rules,state.targets);
+  var el=document.getElementById("result");
+  if(!res){
+    el.innerHTML='<div class="empty">Enter the sticker price and their price to get a score.</div>';
+    return;
+  }
+  var peers=state.saved.filter(function(s){ return s.mode===state.mode; });
+  var better=peers.filter(function(s){
+    return state.mode==="buy" ? s.compare>res.compare : s.compare<res.compare; }).length;
+  var rank = peers.length ? (better+1)+" of "+(peers.length+1)+" quotes you've saved" : "your first saved quote";
+
+  var h='<div class="res"><div class="grade">'
+    +'<div class="gstamp g'+res.grade+'"><span class="gnum">'+res.grade+'</span><span class="gof">out of 5</span></div>'
+    +'<div><div class="gword g'+res.grade+'">'+GWORD[res.grade]+'</div>'
+    +'<div class="gsub">'+esc(rank)+'</div></div></div>';
+
+  h+='<div class="badges">';
+  res.badges.forEach(function(b){ h+='<span class="bdg b-'+b.k+'">'+esc(b.t)+'</span>'; });
+  h+='</div>';
+
+  h+='<div class="big"><div><div class="big-n">'+res.headline+'</div><div class="big-l">'+res.label+'</div></div>';
+  if(res.sub) h+='<div class="big-r"><div class="big-n">'+res.sub+'</div></div>';
+  h+='</div>';
+
+  h+='<div class="bars">';
+  res.parts.forEach(function(p){
+    var w=p.score===null?0:p.score;
+    h+='<div class="bar"><span class="bar-l">'+p.key+'</span>'
+      +'<span class="bar-t"><span class="bar-f" style="width:'+w.toFixed(0)+'%"></span></span>'
+      +'<span class="bar-v">'+(p.score===null?"\u2014":w.toFixed(0))+'</span>'
+      +'<span class="bar-w">'+p.weight+'%</span></div>';
+  });
+  h+='</div>';
+
+  h+='<ul class="checks">';
+  res.checks.forEach(function(c){ h+='<li class="ck ck-'+c.k+'"><span class="ck-m"></span>'+esc(c.t)+'</li>'; });
+  h+='</ul><div class="mathbox">';
+  res.lines.forEach(function(p){ h+='<div class="mrow"><span>'+esc(p[0])+'</span><b>'+p[1]+'</b></div>'; });
+  h+='</div><button class="save" id="btn-save">Save this quote</button></div>';
+
+  el.innerHTML=h;
+  document.getElementById("btn-save").addEventListener("click",function(){ saveQuote(res); });
+}
+
+function renderDrawers(){
+  var T=state.targets,R=state.rules;
+  document.getElementById("d-targets").innerHTML=
+      field({label:"The payment you want",hint:"per month",prefix:"$",bind:"targets",key:"want",value:T.want})
+    + field({label:"The most you'll pay",hint:"per month, hard ceiling",prefix:"$",bind:"targets",key:"ceiling",value:T.ceiling})
+    + field({label:"Out-the-door cap",hint:"buying only, optional",prefix:"$",bind:"targets",key:"maxOTD",value:T.maxOTD})
+    + '<p class="fine">Your number is what you\'re aiming at. Your ceiling is what you walk over. Keeping them separate stops a dealer from treating your ceiling as your target.</p>';
+  document.getElementById("d-rules").innerHTML=
+      field({label:"Sales tax",hint:"your county rate",suffix:"%",bind:"rules",key:"taxRate",value:R.taxRate})
+    + field({label:"Target discount",hint:"fallback when no market band",suffix:"%",bind:"rules",key:"targetDiscount",value:R.targetDiscount})
+    + field({label:"Your pre-approved APR",hint:"from your credit union",suffix:"%",bind:"rules",key:"preApr",value:R.preApr})
+    + field({label:"Base money factor",hint:"buy rate, from Edmunds forums",bind:"rules",key:"baseMF",value:R.baseMF})
+    + field({label:"Doc fee cap",hint:"NY statutory cap",prefix:"$",bind:"rules",key:"docCap",value:R.docCap});
+  [["targets","d-targets"],["rules","d-rules"]].forEach(function(p){
+    var d=document.querySelector('[data-drawer="'+p[0]+'"]');
+    d.className="drw"+(p[0]==="targets"?" gap":"")+(state.open[p[0]]?" open":"");
+    d.querySelector(".drw-c").textContent=state.open[p[0]]?"\u2013":"+";
+  });
+}
+
+function renderSaved(){
+  var el=document.getElementById("saved");
+  if(!state.saved.length){ el.innerHTML=""; return; }
+  var h='<div class="saved-h">Saved quotes</div>';
+  state.saved.forEach(function(d){
+    h+='<div class="sv"><button class="sv-main" data-load="'+d.id+'">'
+      +'<span class="sv-g g'+d.grade+'">'+d.grade+'</span>'
+      +'<span class="sv-n">'+esc(d.name)+'</span>'
+      +'<span class="sv-v">'+d.headline+'</span></button>'
+      +'<button class="sv-x" data-del="'+d.id+'" aria-label="Delete">\u00d7</button></div>';
+  });
+  el.innerHTML=h;
+}
+
+function render(){ renderForm(); renderResult(); renderDrawers(); renderSaved(); renderVin();
+  document.getElementById("tab-buy").className=state.mode==="buy"?"on":"";
+  document.getElementById("tab-lease").className=state.mode==="lease"?"on":"";
+  var vd=document.querySelector('[data-drawer="vin"]');
+  vd.className="drw"+(state.open.vin?" open":"");
+  vd.querySelector(".drw-c").textContent=state.open.vin?"–":"+";
+}
+
+function saveQuote(res){
+  var f=state.mode==="buy"?state.buy:state.lease;
+  var name=f.dealer||((state.mode==="buy"?"Purchase ":"Lease ")+(state.saved.length+1));
+  state.saved.unshift({id:Date.now(),name:name,mode:state.mode,grade:res.grade,
+    headline:res.headline,compare:res.compare,data:JSON.parse(JSON.stringify(f))});
+  state.saved=state.saved.slice(0,15);
+  put("dc:saved",state.saved); renderSaved(); renderResult(); toast("Saved");
+}
+function toast(m){ var t=document.createElement("div"); t.className="toast"; t.textContent=m;
+  document.body.appendChild(t); setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); },1800); }
+
+document.addEventListener("input",function(e){
+  var i=e.target;
+  if(i.id==="vin-input"){ state.vinValue=i.value; return; }
+  if(i.id==="ask-input"){ state.askValue=i.value; return; }
+  if(!i.dataset||!i.dataset.bind) return;
+  var bind=i.dataset.bind,key=i.dataset.key;
+  if(bind==="rules"){ state.rules[key]=num(i.value); put("dc:rules",state.rules); }
+  else if(bind==="targets"){ state.targets[key]=i.value; put("dc:targets",state.targets); }
+  else state[bind][key]=i.value;
+  renderResult();
+});
+
+document.addEventListener("click",function(e){
+  var t=e.target;
+  if(t.closest("#tab-buy")){ state.mode="buy"; render(); return; }
+  if(t.closest("#tab-lease")){ state.mode="lease"; render(); return; }
+  var head=t.closest(".drw-t");
+  if(head){ var id=head.parentNode.dataset.drawer; state.open[id]=!state.open[id]; render(); return; }
+  var lb=t.closest("[data-load]");
+  if(lb){ var d=state.saved.filter(function(x){return x.id===Number(lb.dataset.load);})[0];
+    if(d){ state.mode=d.mode; state[d.mode]=Object.assign({},state[d.mode],d.data); render(); toast("Loaded"); } return; }
+  var db=t.closest("[data-del]");
+  if(db){ state.saved=state.saved.filter(function(x){return x.id!==Number(db.dataset.del);});
+    put("dc:saved",state.saved); renderSaved(); renderResult(); return; }
+  if(t.id==="vin-go"){ fetchVin(state.vinValue); return; }
+  if(t.id==="ask-go"){ state.askAns = answerFeature(state.askValue); renderVin();
+    var ai=document.getElementById("ask-input"); if(ai) ai.focus(); return; }
+});
+
+document.addEventListener("keydown",function(e){
+  if(e.key!=="Enter") return;
+  if(e.target && e.target.id==="vin-input"){ fetchVin(state.vinValue); }
+  if(e.target && e.target.id==="ask-input"){ state.askAns = answerFeature(state.askValue); renderVin(); }
+});
+
+load(); render();
+</script>
+</body>
+</html>
